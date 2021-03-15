@@ -17,3 +17,24 @@ class MealSerializer(serializers.ModelSerializer):
     class Meta:
         model = Meal
         fields = '__all__'
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['id', 'name']
+
+
+class CategoryDetailSerializer(serializers.ModelSerializer):
+    meal_set = MealSerializer(many=True)
+
+    class Meta:
+        model = Category
+        fields = ['id', 'name', 'meal_set']
+
+    def create(self, validated_data):
+        meal_data = validated_data.pop('meal_set')
+        category = Category.objects.create(**validated_data)
+        for meal in meal_data:
+            Meal.objects.create(category=category, **meal)
+        return category
