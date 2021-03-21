@@ -20,7 +20,8 @@ from django.urls import path, include
 from django.conf import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('',include('api.app-urls')),
-    path('order/',include('order.urls')),
-] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+                  path('admin/', admin.site.urls),
+                  path('', include('api.app-urls')),
+                  path('order/', include('order.urls')),
+                  path('account/', include('accounts.urls_accounts'))
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

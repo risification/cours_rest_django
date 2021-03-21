@@ -1,5 +1,6 @@
 from django.urls import path
 from .views import *
+from order.views import *
 
 urlpatterns = [
     path('hard/', MealViewHard.as_view()),

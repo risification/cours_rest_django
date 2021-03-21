@@ -17,5 +17,9 @@ class OrderView(views.APIView):
         serializers = OrderSerializers(data=request.data)
         if serializers.is_valid():
             serializers.save()
+            user = serializers.data.get('user')
+            count_orders(user)
+            total_sum = serializers.data.get('total_sum')
+            count_bonuses(user,total_sum)
             return Response({"data": "OK"})
         return Response(serializers.errors)
