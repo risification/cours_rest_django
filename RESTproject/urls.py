@@ -23,5 +23,6 @@ urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('', include('api.app-urls')),
                   path('order/', include('order.urls')),
-                  path('account/', include('accounts.urls_accounts'))
+                  path('account/', include('accounts.urls_accounts')),
+                  path('estimate/', include('estimate.urls_estimate'))
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
